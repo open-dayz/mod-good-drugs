@@ -62,7 +62,87 @@ class CfgVehicles
 	class Edible_Base;
 	class SeedBase;
 	class PlantBase;
-
+    class SodaCan_ColorBase;
+	class mommymilkies: Edible_Base
+    {
+        displayName = "Mommy Milkies";
+        descriptionShort = "100% pure mother milk. Makes your bones grow nice and strong.";
+        scope = 2;
+        absorbency=0.0;
+		weight = 500;
+		stackedUnit = "";
+		varQuantityInit = 0;
+		varQuantityMin = 0;
+		varQuantityMax = 0;
+		isMeleeWeapon = 1;
+		hiddenSelectionsTextures[]=
+        {
+            "good_drugs\data\mommymilkers.paa"
+        };
+		class DamageSystem
+		{
+			class GlobalHealth
+			{
+				class Health
+				{
+					hitpoints = 100;
+				};
+			};
+		};
+	};
+    class mommymilkies_opened: SodaCan_ColorBase
+    {
+        displayName = "Mommy Milkies";
+        descriptionShort = "100% pure mother milk. Makes your bones grow nice and strong.";
+        scope = 2;
+        absorbency=0.0;
+		weight = 500;
+		stackedUnit = "";
+		varQuantityInit = 1000;
+		varQuantityMin = 0;
+		varQuantityMax = 1000;
+		isMeleeWeapon = 1;
+		hiddenSelectionsTextures[]=
+        {
+            "good_drugs\data\mommymilkers.paa"
+        };
+		class DamageSystem
+		{
+			class GlobalHealth
+			{
+				class Health
+				{
+					hitpoints = 100;
+				};
+			};
+		};
+		class Nutrition
+		{
+			totalVolume = 2;
+			energy = 100;
+			water = 100;
+			nutritionalIndex = 21;
+			toxicity = 0;
+		};
+		class MeleeModes
+		{
+			class Default
+			{
+				ammo = "MeleeLightBlunt";
+				range = 1.0;
+			};
+			class Heavy
+			{
+				ammo = "MeleeLightBlunt_Heavy";
+				range = 1.0;
+			};
+			class Sprint
+			{
+				ammo = "MeleeLightBlunt_Heavy";
+				range = 2.8;
+			};
+		};
+	};
 	class Cannabis: Edible_Base
 	{
 		displayName="Cannabis Flowers";
@@ -113,7 +193,6 @@ class CfgVehicles
 			};
 		};
 	};
-
 	class Plant_Cannabis: PlantBase
 	{
 		scope = 2;
@@ -222,6 +301,103 @@ class CfgVehicles
 		{
 			ContainsSeedsType="CannabisSeeds";
 			ContainsSeedsQuantity = 10;
+		};
+		class UserActions
+		{
+			class EmptyPack
+			{
+				displayNameDefault="$STR_CfgVehicles_CannabisSeedsPack_UserActions_EmptyPack0";
+				displayName="$STR_CfgVehicles_CannabisSeedsPack_UserActions_EmptyPack1";
+				position="action";
+				onlyForPlayer=1;
+				radius=2;
+				condition="true";
+				statement="this callMethod ['EmptySeedPack', _person];";
+			};
+		};
+		class AnimEvents
+		{
+			class SoundWeapon
+			{
+				class pickup
+				{
+					soundSet="seedpack_pickup_SoundSet";
+					id=797;
+				};
+			};
+		};
+	};
+	class RandomSeedsPack: Inventory_Base
+	{
+		scope=2;
+		displayName="Packed Random Seeds";
+		descriptionShort="A package of random seeds.";
+		model="\dz\gear\cultivation\cannabis_seeds_packp3d";
+		rotationFlags=17;
+		quantityBar=1;
+		itemSize[]={1,1};
+		weight=10;
+		spawnOffset=0;
+		lootCategory="Materials";
+		lootTag[]=
+		{
+			"Farm",
+			"Kitchen",
+			"Forester"
+		};
+		
+		class DamageSystem
+		{
+			class GlobalHealth
+			{
+				class Health
+				{
+					hitpoints=5;
+					healthLevels[]=
+					{
+						
+						{
+							1,
+							
+							{
+								"DZ\gear\cultivation\data\cannabis_seeds.rvmat"
+							}
+						},
+						
+						{
+							0.69999999,
+							
+							{
+								"DZ\gear\cultivation\data\cannabis_seeds.rvmat"
+							}
+						},
+						
+						{
+							0.5,
+							
+							{
+								"DZ\gear\cultivation\data\cannabis_seeds_damage.rvmat"
+							}
+						},
+						
+						{
+							0.30000001,
+							
+							{
+								"DZ\gear\cultivation\data\cannabis_seeds_damage.rvmat"
+							}
+						},
+						
+						{
+							0,
+							
+							{
+								"DZ\gear\cultivation\data\cannabis_seeds_destruct.rvmat"
+							}
+						}
+					};
+				};
+			};
 		};
 		class UserActions
 		{
