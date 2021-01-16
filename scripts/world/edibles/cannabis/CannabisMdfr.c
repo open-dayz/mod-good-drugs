@@ -1,7 +1,7 @@
 class CannabisMdfr: ModifierBase
 {	
 	const int RPC_TOGGLE_LSD_LIGHT = 42069;
-	private const	float 	CANNABIS_BONE_PER_SEC = 0.25;
+	private const	float 	CANNABIS_BONE_PER_SEC = 0.05;
 	float m_Duration;
 	override void Init()
 	{
@@ -11,7 +11,7 @@ class CannabisMdfr: ModifierBase
 		m_ID 					= newModifiers.MDF_CANNABIS;
 		m_TickIntervalInactive 	= DEFAULT_TICK_TIME_INACTIVE;
 		m_TickIntervalActive 	= DEFAULT_TICK_TIME_ACTIVE;
-		m_Duration = 20;
+		m_Duration = PlayerConstants.VITAMINS_LIFETIME_SECS;
 	}
 
 
