@@ -47,6 +47,9 @@ modded class ModifiersManager
 		AddModifier(new PainKillersMdfr);
 		AddModifier(new EpinephrineMdfr);
 	    AddModifier(new CannabisMdfr);
+		AddModifier(new MilkMdfr);
+		AddModifier(new PsilocybeMDFR);
+
 
 	}
 }

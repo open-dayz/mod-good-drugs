@@ -12,7 +12,6 @@ class TrippingLights extends PointLightBase
 		EnableSpecular(true);
 		EnableLinear(true);
 		SetFlareVisible(false);
-		SetLifetime(20);
 	}
 	
 	override void OnFrameLightSource(IEntity other, float timeSlice)
