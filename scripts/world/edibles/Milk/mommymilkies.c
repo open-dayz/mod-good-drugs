@@ -12,34 +12,30 @@ class mommymilkies_opened: SodaCan_ColorBase
 		consumer.GetModifiersManager().ActivateModifier( eModifiers.MDF_TEMPERATURE );
 	}
 	
-
-    bool IsMeleeFinisher()
-	{
-		return true;
-	}
-	override void SetActions()
-	{
-		super.SetActions();
-		AddAction(ActionWashHandsItem);
-		AddAction(ActionForceDrink);
-		AddAction(ActionDrinkCan);
-	}
 };
 
-class mommymilkies : Edible_Base
+class mommymilkies : SodaCan_ColorBase
 {
-override void Open()
+	override void Open()
 	{
 		//super.Open();
-		ReplaceEdibleWithNew("mommymilkies");
+		ReplaceEdibleWithNew("mommymilkies_opened");
 	}
 	override void SetActions()
 	{
 		super.SetActions();
+		RemoveAction(ActionDrinkCan);
+		RemoveAction(ActionWashHandsItem)
+		RemoveAction(ActionForceDrink)
 		AddAction(ActionBuildPartSwitch);
 		AddAction(ActionRepairPart);
 		AddAction(ActionDismantlePart);
 		AddAction(ActionBuildPart);
 		AddAction(ActionDestroyPart);
+	}
+	
+	bool IsMeleeFinisher()
+	{
+		return true;
 	}
 }

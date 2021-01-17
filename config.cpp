@@ -63,7 +63,7 @@ class CfgVehicles
 	class SeedBase;
 	class PlantBase;
     class SodaCan_ColorBase;
-	class mommymilkies: Edible_Base
+	class mommymilkies: SodaCan_ColorBase
     {
         displayName = "Mommy Milkies";
         descriptionShort = "100% pure mother milk. Makes your bones grow nice and strong.";
