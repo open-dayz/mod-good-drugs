@@ -41,9 +41,9 @@ modded class PlayerBase
     {  
         if (state) {
 
-            PPEffects.SetEVValuePP(-3);
-			PPEffects.SetColorizationNV(1.0, 0, 1.0);
-			PPEffects.SetNVParams(100.0, 2.0, 9.0, 1.0);
+            PPEffects.SetEVValuePP(0);
+			PPEffects.SetColorizationNV(0.7, 0.1, 0.8);
+			PPEffects.SetNVParams(2.0, 2.0, 9.0, 1.0);
 
             //static void SetNVParams(float light_mult, float noise_intensity, float sharpness, float grain_size)
         } else{
