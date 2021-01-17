@@ -9,11 +9,14 @@ modded class DayZPlayerImplementFallDamage
             //on shrooms
             if( pb.GetModifiersManager() && pb.GetModifiersManager().IsModifierActive(newModifiers.MDF_Psilocybe) ) 
             {
-                super.HandleFallDamage(3);
+                Print("fall damage mitigated.");
+                return;
             }
 			//! no dmg height
+
 			if (pHeight <= FD_DMG_FROM_HEIGHT)
 				return;
+
 
 			vector posMS = m_Player.WorldToModel(m_Player.GetPosition());
 

@@ -42,6 +42,7 @@ class PsilocybeMDFR: ModifierBase
 	
 	override void OnActivate(PlayerBase player)
 	{
+		dSetGravity(player, "0 -1 0");
 		GetGame().RPCSingleParam(player, RPC_TOGGLE_SHROOMTRIP, new Param1<bool>(true), true, player.GetIdentity());
 		player.SetImmunityBoosted(true);
 		if( player.GetNotifiersManager() )
@@ -51,6 +52,7 @@ class PsilocybeMDFR: ModifierBase
 	
 	override void OnDeactivate(PlayerBase player)
 	{
+		dSetGravity(player, "0 -9.8 0");
 		GetGame().RPCSingleParam(player, RPC_TOGGLE_SHROOMTRIP, new Param1<bool>(false), true, player.GetIdentity());
 		player.SetImmunityBoosted(false);
 		if( player.GetNotifiersManager() )

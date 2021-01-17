@@ -4,6 +4,29 @@ modded class PlayerBase
     const int RPC_TOGGLE_MILKTRIP = 69069;
     const int RPC_TOGGLE_SHROOMTRIP = 69169;
     ScriptedLightBase buzz;
+
+    bool IsTripWorking()
+	{
+		return m_WorkingTrip;
+	}
+	
+	void SetTripWorking(bool state)
+	{
+		m_WorkingTrip = state;
+		if (state)
+		{
+			//Print("NVG working by player: " + state);
+		}
+	}
+
+
+    void UpdateTrippingStatus(PlayerBase player)
+	{
+        if (player.GetModifiersManager() && player.GetModifiersManager().IsModifierActive(newModifiers.MDF_Psilocybe) && !player.IsTripWorking() )
+			player.SetTripWorking(true);
+	}
+
+
     void createlight()
     {
         //check if client-side
