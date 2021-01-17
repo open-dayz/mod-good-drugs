@@ -3,7 +3,14 @@ modded class PlayerBase
     const int RPC_TOGGLE_LSD_LIGHT = 42069;
     const int RPC_TOGGLE_MILKTRIP = 69069;
     const int RPC_TOGGLE_SHROOMTRIP = 69169;
+    bool 				m_WorkingTrip;
     ScriptedLightBase buzz;
+
+    void Init()
+    {
+        m_WorkingTrip = false;
+
+    }
 
     bool IsTripWorking()
 	{
@@ -15,7 +22,7 @@ modded class PlayerBase
 		m_WorkingTrip = state;
 		if (state)
 		{
-			//Print("NVG working by player: " + state);
+			Print("Mushroom trip working by player: " + state);
 		}
 	}
 
@@ -60,22 +67,6 @@ modded class PlayerBase
         }
     }
 
-    void shroom_trip(bool state)
-    {  
-        if (state) {
-
-            PPEffects.SetEVValuePP(0);
-			PPEffects.SetColorizationNV(0.7, 0.1, 0.8);
-			PPEffects.SetNVParams(2.0, 2.0, 9.0, 1.0);
-
-            //static void SetNVParams(float light_mult, float noise_intensity, float sharpness, float grain_size)
-        } else{
-            PPEffects.SetEVValuePP(0);
-			PPEffects.SetColorizationNV(1.0, 1.0, 1.0);
-			PPEffects.SetNVParams(1.0, 0.0, 2.35, 2.75); //default values        
-        }
-    }
-
 
     override void OnRPC(PlayerIdentity sender, int rpc_type, ParamsReadContext ctx)
     {
@@ -105,7 +96,7 @@ modded class PlayerBase
                     break;
                 }
                 
-                shroom_trip(shroomtrip_params.param1);
+                SetTripWorking(shroomtrip_params.param1);
                 break;
             }
         }
