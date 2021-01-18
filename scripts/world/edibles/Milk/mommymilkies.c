@@ -11,7 +11,13 @@ class mommymilkies_opened: SodaCan_ColorBase
 		consumer.GetModifiersManager().ActivateModifier( newModifiers.MDF_MILK );
 		consumer.GetModifiersManager().ActivateModifier( eModifiers.MDF_TEMPERATURE );
 	}
-	
+	override void SetActions()
+	{
+		super.SetActions();
+		AddAction(ActionDrinkCan);
+		AddAction(ActionWashHandsItem)
+		AddAction(ActionForceDrink)
+	}
 };
 
 class mommymilkies : SodaCan_ColorBase
@@ -32,6 +38,7 @@ class mommymilkies : SodaCan_ColorBase
 		AddAction(ActionDismantlePart);
 		AddAction(ActionBuildPart);
 		AddAction(ActionDestroyPart);
+		AddAction(ActionOpen);
 	}
 	
 	bool IsMeleeFinisher()

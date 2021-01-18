@@ -30,12 +30,37 @@ class TrippingLights extends PointLightBase
 				vector pos = GetGame().GetCurrentCameraPosition();
 				vector dir = GetGame().GetCurrentCameraDirection();
 				int  r = Math.RandomIntInclusive(4, 8);
-				vector trip = plr.GetPosition() + Vector( Math.RandomIntInclusive(-10, 10), Math.RandomIntInclusive(-10, 10), Math.RandomIntInclusive(1, 3));
+				vector trip = plr.GetPosition() + Vector( Math.RandomIntInclusive(-8, 8), Math.RandomIntInclusive(-8, 8), Math.RandomIntInclusive(1, 2));
 				SetPosition(trip);
 
 				float radius = Math.AbsFloat(Math.Tan(m_Timer * Math.PI2))
 				SetRadiusTo( r *  radius );
 			}
+		}
+	}
+}
+class ShroomLight extends PointLightBase
+{
+
+	void ShroomLight()
+	{
+		SetVisibleDuringDaylight(false);
+		SetRadiusTo( 3 );
+		SetBrightnessTo(0.38);
+		SetDiffuseColor(0.2, 0.23, 0.25);
+		SetCastShadow(false);
+		EnableSpecular(false);
+		EnableLinear(true);
+		SetFlareVisible(false);
+	}
+		override void OnFrameLightSource(IEntity other, float timeSlice)
+	{
+		if ( GetGame()  &&  IsEnabled() )
+		{
+			vector pos = GetGame().GetCurrentCameraPosition();
+			pos += Vector( 0, -0.4, 0 );
+			
+			SetPosition( pos );
 		}
 	}
 }

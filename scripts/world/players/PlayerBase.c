@@ -3,36 +3,31 @@ modded class PlayerBase
     const int RPC_TOGGLE_LSD_LIGHT = 42069;
     const int RPC_TOGGLE_MILKTRIP = 69069;
     const int RPC_TOGGLE_SHROOMTRIP = 69169;
-    bool 				m_WorkingTrip;
     ScriptedLightBase buzz;
+	ScriptedLightBase soothe;
 
-    void Init()
-    {
-        m_WorkingTrip = false;
-
-    }
-
-    bool IsTripWorking()
+	void shroom_trip(bool state)
 	{
-		return m_WorkingTrip;
-	}
-	
-	void SetTripWorking(bool state)
-	{
-		m_WorkingTrip = state;
 		if (state)
 		{
-			Print("Mushroom trip working by player: " + state);
-		}
+            if (GetGame().IsClient() || !GetGame().IsMultiplayer()) 
+            {
+                // Create light
+                soothe = ScriptedLightBase.CreateLight(ShroomLight);
+                // Attach to player
+                soothe.AttachOnObject(this);
+                PPEffects.SetEVValuePP(2);
+                PPEffects.SetColorizationNV(0.8, 0.15, 0.9);
+                PPEffects.SetNVParams(2.0, 0.0, 1.0, 1.0);
+            }      
+        }
+        else{
+            PPEffects.SetEVValuePP(0);
+            PPEffects.SetColorizationNV(1.0, 1.0, 1.0);
+            PPEffects.SetNVParams(1.0, 0.0, 2.35, 2.75); //default values
+            soothe.Destroy();
+         }              
 	}
-
-
-    void UpdateTrippingStatus(PlayerBase player)
-	{
-        if (player.GetModifiersManager() && player.GetModifiersManager().IsModifierActive(newModifiers.MDF_Psilocybe) && !player.IsTripWorking() )
-			player.SetTripWorking(true);
-	}
-
 
     void createlight()
     {
@@ -95,8 +90,7 @@ modded class PlayerBase
                 if (!ctx.Read(shroomtrip_params)) {
                     break;
                 }
-                
-                SetTripWorking(shroomtrip_params.param1);
+                shroom_trip(shroomtrip_params.param1);
                 break;
             }
         }

@@ -1,7 +1,11 @@
-modded class PsilocybeMushroom
+class GalaxyMushroom : MushroomBase
 {
+	override bool CanBeCooked()
+	{
+		return false;
+	}	
 
-    override void OnConsume(float amount, PlayerBase consumer)
+	override void OnConsume(float amount, PlayerBase consumer)
 	{
 		if( consumer.GetModifiersManager().IsModifierActive(newModifiers.MDF_Psilocybe))//effectively resets the timer
 		{
